@@ -192,7 +192,14 @@ export default {
           delete loginParams.username
           loginParams[!state.loginType ? 'email' : 'username'] = values.username
           loginParams.password = md5(values.password)
-          Login(loginParams)
+          // this.$axios.post('/api/login?email=' + values.username + '&password=' + values.password, {
+          //       name: values.username,
+          //       password: values.password
+          //     },
+          //     {
+          //       headers: { 'Content-Type': 'text/html; charset=utf-8' }
+          //     })
+            Login(loginParams)
             .then((res) => this.loginSuccess(res))
             .catch(err => this.requestFailed(err))
             .finally(() => {
@@ -266,12 +273,13 @@ export default {
       setTimeout(() => {
         this.$notification.success({
           message: '欢迎',
-          description: `${timeFix()}，欢迎回来`
+          description: `${timeFix()}，欢迎回来22`
         })
       }, 1000)
       this.isLoginError = false
     },
     requestFailed (err) {
+      debugger
       this.isLoginError = true
       this.$notification['error']({
         message: '错误',
